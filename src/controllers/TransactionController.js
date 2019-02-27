@@ -15,8 +15,6 @@ module.exports = {
     async store(req, res){
         const transaction = await Transaction.create(req.body);
 
-        req.io.emit('transaction', transaction);
-
         return res.json(transaction);
     },
 
@@ -27,9 +25,10 @@ module.exports = {
     },
 
     async update(req, res){
+        console.log(req.params)
         const transaction = await Transaction.findById(req.params.id)
 
-        transaction.set({ transactionDescription: req.params.transactionDescription, transactionValue: req.params.transactionValue, transactionType: req.params.transactionType })
+        transaction.set({ transactionDescription: req.body.transactionDescription, transactionValue: req.body.transactionValue, transactionType: req.body.transactionType })
 
         await transaction.save()
 

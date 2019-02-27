@@ -22,4 +22,6 @@ app.use(cors());
 app.use(express.json());
 app.use(require('./routes'));
 
-server.listen(PORT, () => {});
+server.listen(PORT, () => {
+    console.log('Server open on PORT ' + PORT)
+});
