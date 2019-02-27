@@ -10,5 +10,6 @@ routes.get('/', function(req, res){
 routes.get('/transactions/:id', TransactionController.index);
 routes.post('/transactions', TransactionController.store);
 routes.delete('/transactions/:id', TransactionController.delete);
+routes.put('/transactions/:id', TransactionController.update);
 
 module.exports = routes;

@@ -24,5 +24,15 @@ module.exports = {
         const transaction = await Transaction.findByIdAndDelete(req.params.id)
 
         return res.json(transaction)
+    },
+
+    async update(req, res){
+        const transaction = await Transaction.findById(req.params.id)
+
+        transaction.set({ transactionDescription: req.params.transactionDescription, transactionValue: req.params.transactionValue, transactionType: req.params.transactionType })
+
+        await transaction.save()
+
+        return res.json(transaction)
     }
 };
