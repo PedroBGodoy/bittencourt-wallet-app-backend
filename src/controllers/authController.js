@@ -1,10 +1,11 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const authConfig = require("../config/auth");
+const dotenv = require("dotenv");
+dotenv.config();
 
 function generateToken(id) {
-  const token = jwt.sign({ id: id }, authConfig.secret, {
+  const token = jwt.sign({ id: id }, process.env.secret, {
     expiresIn: 86400
   });
 
