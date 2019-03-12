@@ -4,11 +4,11 @@ const routes = express.Router();
 //const authMiddleware = require("./middlewares/auth");
 
 //const TransactionController = require("./controllers/transactionController");
-// const AuthController = require("./controllers/authController");
+const AuthController = require("./controllers/authController");
 
 //PUBLIC ROUTES
-// routes.post("/auth/register", AuthController.register);
-// routes.post("/auth/authenticate", AuthController.authenticate);
+routes.post("/auth/register", AuthController.register);
+routes.post("/auth/authenticate", AuthController.authenticate);
 
 routes.get("/", function(req, res) {
   res.send("Hello World!");
