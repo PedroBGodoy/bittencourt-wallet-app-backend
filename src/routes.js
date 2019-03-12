@@ -17,9 +17,9 @@ routes.get("/", function(req, res) {
 //routes.use(authMiddleware);
 
 //PRIVATE ROUTES
-// routes.get("/transactions", TransactionController.index);
-// routes.post("/transactions", TransactionController.store);
-// routes.delete("/transactions", TransactionController.delete);
-// routes.put("/transactions", TransactionController.update);
+routes.get("/transactions", TransactionController.index);
+routes.post("/transactions", TransactionController.store);
+routes.delete("/transactions", TransactionController.delete);
+routes.put("/transactions", TransactionController.update);
 
 module.exports = routes;
