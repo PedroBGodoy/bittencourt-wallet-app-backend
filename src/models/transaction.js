@@ -20,7 +20,7 @@ const TransactionSchema = new mongoose.Schema({
   user: {
     type: String,
     required: true
-  } // user_id provided by Auth0
+  }
 });
 
 module.exports = mongoose.model("Transaction", TransactionSchema);
