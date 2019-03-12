@@ -1,15 +1,21 @@
-const express = require('express');
-
+const express = require("express");
 const routes = express.Router();
 
-const TransactionController = require('./controllers/TransactionController');
+const authMiddleware = require("./middlewares/auth");
 
-routes.get('/', function(req, res){
-    res.send('Hello World!')
-})
-routes.get('/transactions/:id', TransactionController.index);
-routes.post('/transactions', TransactionController.store);
-routes.delete('/transactions/:id', TransactionController.delete);
-routes.put('/transactions/:id', TransactionController.update);
+const TransactionController = require("./controllers/transactionController");
+const AuthController = require("./controllers/authController");
+
+//PUBLIC ROUTES
+routes.post("/auth/register", AuthController.register);
+routes.post("/auth/authenticate", AuthController.authenticate);
+
+routes.use(authMiddleware);
+
+//PRIVATE ROUTES
+routes.get("/transactions", TransactionController.index);
+routes.post("/transactions", TransactionController.store);
+routes.delete("/transactions", TransactionController.delete);
+routes.put("/transactions", TransactionController.update);
 
 module.exports = routes;
