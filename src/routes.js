@@ -1,9 +1,9 @@
 const express = require("express");
 const routes = express.Router();
 
-//const authMiddleware = require("./middlewares/auth");
+const authMiddleware = require("./middlewares/auth");
 
-//const TransactionController = require("./controllers/transactionController");
+const TransactionController = require("./controllers/transactionController");
 const AuthController = require("./controllers/authController");
 
 //PUBLIC ROUTES
@@ -14,7 +14,7 @@ routes.get("/", function(req, res) {
   res.send("Hello World!");
 });
 
-//routes.use(authMiddleware);
+routes.use(authMiddleware);
 
 //PRIVATE ROUTES
 routes.get("/transactions", TransactionController.index);
