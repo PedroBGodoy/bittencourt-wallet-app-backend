@@ -3,7 +3,7 @@ const routes = express.Router();
 
 const authMiddleware = require("./middlewares/auth");
 
-const TransactionController = require("./controllers/transactionController");
+const TransactionController = require("./controllers/TransactionController");
 const AuthController = require("./controllers/authController");
 
 //PUBLIC ROUTES
