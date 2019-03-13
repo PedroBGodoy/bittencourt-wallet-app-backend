@@ -17,7 +17,7 @@ const TransactionSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  user: {
+  userId: {
     type: String,
     required: true
   }
