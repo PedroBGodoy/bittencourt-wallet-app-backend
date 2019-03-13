@@ -19,7 +19,7 @@ routes.use(authMiddleware);
 //PRIVATE ROUTES
 routes.get("/transactions", TransactionController.index);
 routes.post("/transactions", TransactionController.store);
-routes.delete("/transactions", TransactionController.delete);
-routes.put("/transactions", TransactionController.update);
+routes.delete("/transactions/:id", TransactionController.delete);
+routes.put("/transactions/:id", TransactionController.update);
 
 module.exports = routes;

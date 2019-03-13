@@ -20,19 +20,18 @@ module.exports = {
   },
 
   async delete(req, res) {
-    const transaction = await Transaction.findByIdAndDelete(req.userId);
+    const transaction = await Transaction.findByIdAndDelete(req.params.id);
 
     return res.json(transaction);
   },
 
   async update(req, res) {
-    console.log(req.params);
-    const transaction = await Transaction.findById(req.userId);
+    const transaction = await Transaction.findById(req.params.id);
 
     transaction.set({
-      transactionDescription: req.body.transactionDescription,
-      transactionValue: req.body.transactionValue,
-      transactionType: req.body.transactionType
+      description: req.body.description,
+      value: req.body.value,
+      type: req.body.type
     });
 
     await transaction.save();
