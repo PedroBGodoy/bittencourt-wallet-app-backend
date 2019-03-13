@@ -26,7 +26,7 @@ module.exports = (req, res, next) => {
       return res.status(401).send({ error: "Token inválido" });
     }
 
-    req.userId = decoded.id;
+    req.body.userId = decoded.id;
 
     return next();
   });
