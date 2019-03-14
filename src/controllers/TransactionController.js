@@ -3,9 +3,9 @@ const Transaction = require("../models/transaction");
 module.exports = {
   async index(req, res) {
     try {
-      const transactions = await Transaction.find({ user: req.body.userId }).sort(
-        "-madeAt"
-      );
+      const transactions = await Transaction.find({
+        userId: req.body.userId
+      }).sort("-madeAt");
 
       return res.json(transactions);
     } catch (err) {
