@@ -14,7 +14,7 @@ routes.get("/", function(req, res) {
   res.send("Hello World!");
 });
 
-routes.use(authMiddleware);
+routes.use("/transactions", authMiddleware);
 
 //PRIVATE ROUTES
 routes.get("/transactions", TransactionController.index);
