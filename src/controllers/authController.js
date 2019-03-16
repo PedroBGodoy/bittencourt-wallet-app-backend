@@ -41,7 +41,7 @@ module.exports = {
 
       user.password = undefined;
 
-      return res.send({ user, token: generateToken(user.id) });
+      return res.status(200).send({ user, token: generateToken(user.id) });
     } catch (err) {
       return res.status(400).send({ error: "Falha no registro" });
     }
@@ -71,7 +71,7 @@ module.exports = {
 
       user.password = undefined;
 
-      res.send({ user, token: generateToken(user.id) });
+      res.status(200).send({ user, token: generateToken(user.id) });
     } catch (err) {
       console.log(err);
       return res.status(400).send({
