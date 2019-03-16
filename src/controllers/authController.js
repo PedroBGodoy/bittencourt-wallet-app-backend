@@ -12,9 +12,26 @@ function generateToken(id) {
   return token;
 }
 
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
 module.exports = {
   async register(req, res) {
-    const { email } = req.body;
+    const { email, nome, password } = req.body;
+
+    if (!validateEmail(email)) {
+      return res.status(400).send({ error: "Email inválido!" });
+    }
+
+    if (nome === null || nome === undefined || nome.trim() === "") {
+      return res.status(400).send({ error: "Nome não pode ser nulo!" });
+    }
+
+    if (password === null || password === undefined || password.trim() === "") {
+      return res.status(400).send({ error: "Senha não pode ser nula" });
+    }
 
     try {
       if (await User.findOne({ email }))
@@ -33,6 +50,14 @@ module.exports = {
   async authenticate(req, res) {
     const { email, password } = req.body;
 
+    if (!validateEmail(email)) {
+      return res.status(400).send({ error: "Email inválido!" });
+    }
+
+    if (password === null || password === undefined || password.trim() === "") {
+      return res.status(400).send({ error: "Senha não pode ser nula" });
+    }
+
     try {
       const user = await User.findOne({ email }).select("+password");
 
@@ -50,7 +75,7 @@ module.exports = {
     } catch (err) {
       console.log(err);
       return res.status(400).send({
-        error: "Ocorreu um erro nos servidores. Tente novamente mais tarde!"
+        error: "Erro interno. Por favor tente novamente mais tarde!"
       });
     }
   }
