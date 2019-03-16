@@ -19,13 +19,13 @@ function validateEmail(email) {
 
 module.exports = {
   async register(req, res) {
-    const { email, nome, password } = req.body;
+    const { email, name, password } = req.body;
 
     if (!validateEmail(email)) {
       return res.status(400).send({ error: "Email inválido!" });
     }
 
-    if (nome === null || nome === undefined || nome.trim() === "") {
+    if (name === null || name === undefined || name.trim() === "") {
       return res.status(400).send({ error: "Nome não pode ser nulo!" });
     }
 
