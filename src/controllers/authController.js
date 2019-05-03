@@ -5,9 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 function generateToken(id) {
-  const token = jwt.sign({ id: id }, process.env.secret, {
-    expiresIn: 0
-  });
+  const token = jwt.sign({ id: id }, process.env.secret, {});
 
   return token;
 }
